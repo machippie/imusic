@@ -1,0 +1,31 @@
+# Standards: 0.1
+---
+- name: Fact imusic user
+  set_fact:
+    imusic_user: "{{ imusic_user | default(homebrew_user) | default(ansible_user_id) }}"
+  tags:
+    - imusic
+
+- become: "{{ (imusic_user != ansible_user_id) | bool }}"
+  become_user: "{{ imusic_user }}"
+  block:
+    - name: Install required package
+      ignore_errors: True
+      homebrew_cask:
+        name: webhippie/casks/imusic
+        greedy: True
+        options: appdir=/Applications
+        accept_external_apps: False
+        state: upgraded
+      tags:
+        - imusic
+
+    - name: Remove quarantine flag
+      register: imusic_quarantine
+      failed_when: imusic_quarantine.rc != 0 and "No such xattr" not in imusic_quarantine.stderr
+      changed_when: imusic_quarantine.rc == 0
+      command: xattr -d com.apple.quarantine /Applications/iMusic.app
+      tags:
+        - imusic
+
+...

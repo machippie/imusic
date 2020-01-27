@@ -1,0 +1,16 @@
+# Standards: 0.1
+---
+- name: Kill imusic
+  command: killall iMusic
+  register: imusic_kill
+  failed_when: imusic_kill.rc != 0 and "No matching processes belonging to you were found" not in imusic_kill.stderr
+  become: "{{ (imusic_user != ansible_user_id) | bool }}"
+  become_user: "{{ imusic_user }}"
+
+- name: Start imusic
+  when: imusic_started
+  command: open -j /Applications/iMusic.app
+  become: "{{ (imusic_user != ansible_user_id) | bool }}"
+  become_user: "{{ imusic_user }}"
+
+...
