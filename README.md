@@ -1,6 +1,6 @@
 # imusic
 
-[![Build Status](https://cloud.drone.io/api/badges/machippie/imusic/status.svg)](https://cloud.drone.io/machippie/google-chrome)
+[![Build Status](https://cloud.drone.io/api/badges/machippie/imusic/status.svg)](https://cloud.drone.io/machippie/imusic)
 
 Ansible role to configure imusic.
 
