@@ -4,4 +4,7 @@
 # @var imusic_user:value: imusic_user | default(homebrew_user) | default(ansible_user_id)
 # imusic_user:
 
+# @var imusic_started:description: Restart app if already running
+imusic_started: True
+
 ...

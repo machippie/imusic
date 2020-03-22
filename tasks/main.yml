@@ -20,12 +20,12 @@
       tags:
         - imusic
 
-    - name: Remove quarantine flag
-      register: imusic_quarantine
-      failed_when: imusic_quarantine.rc != 0 and "No such xattr" not in imusic_quarantine.stderr
-      changed_when: imusic_quarantine.rc == 0
-      command: xattr -d com.apple.quarantine /Applications/iMusic.app
-      tags:
-        - imusic
+- name: Remove quarantine flag
+  register: imusic_quarantine
+  failed_when: imusic_quarantine.rc != 0 and "No such xattr" not in imusic_quarantine.stderr
+  changed_when: imusic_quarantine.rc == 0
+  command: xattr -d com.apple.quarantine /Applications/iMusic.app
+  tags:
+    - imusic
 
 ...
