@@ -1,6 +1,16 @@
 
 ## Default Variables
 
+### imusic_started
+
+Restart app if already running
+
+#### Default value
+
+```yaml
+imusic_started: true
+```
+
 ### imusic_user
 
 User to run user-specific commands
